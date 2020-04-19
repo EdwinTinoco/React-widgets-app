@@ -1,35 +1,25 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class HideMe extends Component {
-  constructor() {
-    super();
+export default function HideMe(){
+  const [styleType, setStyleType] = useState("block")  
 
-    this.state = {
-      styleType: "block"
-    };
-  }
-
-  handleHideMe = blockNone => {
-    this.setState({
-      styleType: blockNone
-    });
+  const handleHideMe = blockNone => {
+    setStyleType(blockNone)
   };
-
-  render() {
-    return (
-      <div>
-        <hr />
-        <h2 style={{ display: `${this.state.styleType}` }}>Hide Me</h2>
-        <button
-          onClick={
-            this.state.styleType === "block"
-              ? () => this.handleHideMe("none")
-              : () => this.handleHideMe("block")
-          }
-        >
-          Hide Me
-        </button>
-      </div>
-    );
-  }
+ 
+  return (
+    <div>
+      <hr />
+      <h2 style={{ display: `${styleType}` }}>Hide Me</h2>
+      <button
+        onClick={
+          styleType === "block"
+            ? () => handleHideMe("none")
+            : () => handleHideMe("block")
+        }
+      >
+        Hide Me
+      </button>
+    </div>
+  );
 }

@@ -1,36 +1,26 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class ColorWord extends Component {
-  constructor() {
-    super();
+export default function ColorWord(){
+  const [color, setColor] = useState("black")  
 
-    this.state = {
-      colorType: "black"
-    };
-  }
-
-  handleChangeColor = color => {
-    this.setState({ 
-      colorType: color
-    });
+  const handleChangeColor = color => {
+    setColor(color)
   };
-
-  render() {
-    return (
-      <div>
-        <hr />
-        <h2 style={{ color: `${this.state.colorType}` }}>
-          {this.state.colorType}
-        </h2>
-        <input id="color" type="text" placeholder="Type a color" />
-        <button
-          onClick={() =>
-            this.handleChangeColor(document.getElementById("color").value)
-          }
-        >
-          Change Color
-        </button>
-      </div>
-    );
-  }
+  
+  return (
+    <div>
+      <hr />
+      <h2 style={{ color: `${color}` }}>
+        {color}
+      </h2>
+      <input id="color" type="text" placeholder="Type a color" />
+      <button
+        onClick={() =>
+          handleChangeColor(document.getElementById("color").value)
+        }
+      >
+        Change Color
+      </button>
+    </div>
+  );  
 }

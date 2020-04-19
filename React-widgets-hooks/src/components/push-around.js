@@ -1,36 +1,26 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class PushAround extends Component {
-  constructor() {
-    super();
+export default function PushAround(){
+  const [positionContent, setPositionContent] = useState("center")  
 
-    this.state = {
-      positionContent: "center"
-    };
-  }
-
-  handlePosition = position => {
-    this.setState({
-      positionContent: position
-    });
+  const handlePosition = position => {
+    setPositionContent(position)
   };
-
-  render() {
-    return (
-      <div>
-        <hr />
-        <div className="p-tag-content"
-          style={{ justifyContent: `${this.state.positionContent}` }}
-        >
-          <div>
-            <h2>Push me around</h2>
-          </div>
+ 
+  return (
+    <div>
+      <hr />
+      <div className="p-tag-content"
+        style={{ justifyContent: `${positionContent}` }}
+      >
+        <div>
+          <h2>Push me around</h2>
         </div>
-        
-        <button onClick={() => this.handlePosition("left")}>Left</button>
-        <button onClick={() => this.handlePosition("center")}>Center</button>
-        <button onClick={() => this.handlePosition("right")}>Right</button>
       </div>
-    );
-  }
+      
+      <button onClick={() => handlePosition("left")}>Left</button>
+      <button onClick={() => handlePosition("center")}>Center</button>
+      <button onClick={() => handlePosition("right")}>Right</button>
+    </div>
+  );
 }

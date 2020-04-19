@@ -1,32 +1,22 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class AddSub extends Component {
-  constructor() {
-    super();
+export default function AddSub(){
+  const [count, setCount] = useState(0);
 
-    this.state = {
-      count: 0
-    };
+  const handleCrementer = incrementer => {
+    setCount(count + incrementer)   
   }
-
-  handleCrementer = incrementer => {
-    this.setState({
-      count: this.state.count + incrementer
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <hr />
-        <h2>{this.state.count}</h2>
-        <button onClick={() => this.handleCrementer(1)}>Add</button>
-        <button
-          onClick={this.state.count > 0 ? () => this.handleCrementer(-1) : null}
-        >
-          Sub
-        </button>
-      </div>
-    );
-  }
+  
+  return (
+    <div>
+      <hr />
+      <h2>{count}</h2>
+      <button onClick={() => handleCrementer(1)}>Add</button>
+      <button
+        onClick={count > 0 ? () => handleCrementer(-1) : null}
+      >
+        Sub
+      </button>
+    </div>
+  ); 
 }

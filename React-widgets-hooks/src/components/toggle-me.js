@@ -1,35 +1,25 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class ToggleMe extends Component {
-  constructor() {
-    super();
+export default function ToggleMe(){
+  const [toggleWord, setToggleWord] = useState("Edwin")
 
-    this.state = {
-      toggleWord: "Edwin"
-    };
-  }
-
-  handleToggleMe = word => {
-    this.setState({
-      toggleWord: word
-    });
+  const handleToggleMe = word => {
+    setToggleWord(word)
   };
-
-  render() {
-    return (
-      <div>
-        <hr />
-        <h2>{this.state.toggleWord}</h2>
-        <button
-          onClick={
-            this.state.toggleWord === "Edwin"
-              ? () => this.handleToggleMe("Jared")
-              : () => this.handleToggleMe("Edwin")
-          }
-        >
-          Toggle Me
-        </button>
-      </div>
-    );
-  }
+ 
+  return (
+    <div>
+      <hr />
+      <h2>{toggleWord}</h2>
+      <button
+        onClick={
+          toggleWord === "Edwin"
+            ? () => handleToggleMe("Jared")
+            : () => handleToggleMe("Edwin")
+        }
+      >
+        Toggle Me
+      </button>
+    </div>
+  );
 }

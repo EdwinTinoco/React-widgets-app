@@ -1,36 +1,31 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class CurrentTime extends Component {
-  constructor() {
-    super();
+export default function CurrentTime(){
+  const [currentTime, setCurrentTime] = useState(new Date())
+  const [intervalTime, setIntervalTime] = useState(0)
 
-    this.state = {
-      time: new Date()
-    };
-  }
-
-  tick = () => {
-    this.setState({
-      time: new Date()
-    });
+  const tick = () => {
+    setCurrentTime(new Date())
   };
 
-  componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000);
-  }
+  useEffect(() => {
+    setIntervalTime(setInterval(() => tick(), 1000))
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
+    return function() {
+      clearInterval(intervalTime);
+    };
+    
+  }, [])
 
-  render() {
-    return (
-      <div>
-        <hr />
-        <h1>{this.state.time.toLocaleTimeString()}</h1>
-      </div>
-    );
-  }
+  console.log(intervalTime);
+  
+  
+  return (
+    <div>
+      <hr />
+      <h1>{currentTime.toLocaleTimeString()}</h1>
+    </div>
+  );
 }
 
 // handleTime = () => {
